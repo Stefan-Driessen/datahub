@@ -3,15 +3,7 @@ entities:
     doc: Data Products consist of one of more logically grouped data assets that have been optimised for consumption.
     keyAspect: dataProductKey
     aspects:
-      - institutionalMemory
       - ownership
-      - status
-      - schemaMetadata
-      - globalTags
-      - glossaryTerms
-      - browsePaths
-      - deprecation
-      - operation
   - name: dataPlatform
     category: core
     keyAspect: dataPlatformKey
