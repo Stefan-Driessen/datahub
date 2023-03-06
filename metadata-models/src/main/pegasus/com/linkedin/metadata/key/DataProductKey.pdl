@@ -4,6 +4,7 @@ import com.linkedin.common.Urn
 
 /**
  * Key for a Data Product
+ * TODO: capitalise the record name!
  */
 @Aspect = {
   "name": "dataProductKey"

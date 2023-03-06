@@ -21,6 +21,7 @@ public class Constants {
   /**
    * Entities
    */
+  public static final String DATA_PRODUCT_ENTITY_NAME = "dataProduct";
   public static final String CORP_USER_ENTITY_NAME = "corpuser";
   public static final String CORP_GROUP_ENTITY_NAME = "corpGroup";
   public static final String DATASET_ENTITY_NAME = "dataset";
@@ -59,6 +60,9 @@ public class Constants {
   /**
    * Aspects
    */
+  // Data Product
+  public static final String DATA_PRODUCT_KEY_ASPECT_NAME = "dataProductKey";
+
   // Common
   public static final String OWNERSHIP_ASPECT_NAME = "ownership";
   public static final String INSTITUTIONAL_MEMORY_ASPECT_NAME = "institutionalMemory";

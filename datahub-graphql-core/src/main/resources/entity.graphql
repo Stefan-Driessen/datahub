@@ -4553,7 +4553,17 @@ type DataProduct implements Entity {
     urn: String!
 
     """
-    Ownership metadata of the data product
+    Unique urn of the domain of the data product as defined in \datahub\metadata-models\src\main\pegasus\com\linkedin\metadata\key\DashboardKey.pdl
+    """
+    domain: String!
+
+    """
+    Unique id/name of the data prouduct as defined in \datahub\metadata-models\src\main\pegasus\com\linkedin\metadata\key\DashboardKey.pdl
+    """
+    id: String!
+
+    """
+    Ownership metadata of the data product which is added as an aspect in \datahub\metadata-models\src\main\resources\entity-registry.yml
     """
     ownership: Ownership
 }
