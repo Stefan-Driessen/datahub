@@ -4558,9 +4558,9 @@ type DataProduct implements Entity {
     domain: String!
 
     """
-    Unique id/name of the data prouduct as defined in \datahub\metadata-models\src\main\pegasus\com\linkedin\metadata\key\DashboardKey.pdl
+    Unique name of the data prouduct as defined in \datahub\metadata-models\src\main\pegasus\com\linkedin\metadata\key\DashboardKey.pdl
     """
-    id: String!
+    name: String!
 
     """
     Ownership metadata of the data product which is added as an aspect in \datahub\metadata-models\src\main\resources\entity-registry.yml
