@@ -1,9 +1,7 @@
 package com.linkedin.datahub.graphql.resolvers.dataproduct;
 
-import com.linkedin.data.template.SetMode;
+import com.linkedin.common.urn.Urn;
 import com.linkedin.datahub.graphql.QueryContext;
-import com.linkedin.datahub.graphql.authorization.AuthorizationUtils;
-import com.linkedin.datahub.graphql.exception.AuthorizationException;
 import com.linkedin.datahub.graphql.generated.OwnerEntityType;
 import com.linkedin.datahub.graphql.generated.OwnershipType;
 import com.linkedin.datahub.graphql.resolvers.mutate.util.OwnerUtils;
@@ -12,12 +10,10 @@ import com.linkedin.events.metadata.ChangeType;
 import com.linkedin.metadata.Constants;
 import com.linkedin.metadata.entity.EntityService;
 import com.linkedin.metadata.key.dataProductKey;
-import com.linkedin.metadata.utils.EntityKeyUtils;
 import com.linkedin.metadata.utils.GenericRecordUtils;
 import com.linkedin.mxe.MetadataChangeProposal;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,18 +34,18 @@ public class CreateDataProductResolver implements DataFetcher<CompletableFuture<
   public CompletableFuture<String> get(DataFetchingEnvironment environment) throws Exception {
 
     final QueryContext context = environment.getContext();
-    final String dataProductName =environment.getArgument("name"); // Defined in createDataProduct in \datahub-graphql-core\src\main\resources\entity.graphql
+    final String dataProductName = environment.getArgument("name"); // Defined in createDataProduct in \datahub-graphql-core\src\main\resources\entity.graphql
     final String domainUrn = environment.getArgument("domainUrn"); // Defined in createDataProduct in \datahub-graphql-core\src\main\resources\entity.graphql
 
     return CompletableFuture.supplyAsync(() -> {
 
       try {
         // Create the Data Product Key
-        final DataProductKey key = new dataProductKey();
+        final dataProductKey key = new dataProductKey();
 
         // Take user provided id OR generate a random UUID for the Tag.
         key.setName(dataProductName);
-        key.setDomain(domainUrn);
+        key.setDomain(Urn.createFromString(domainUrn));
 
         // TODO: Implement existance check.
         // if (_entityClient.exists(EntityKeyUtils.convertEntityKeyToUrn(key, Constants.TAG_ENTITY_NAME), context.getAuthentication())) {

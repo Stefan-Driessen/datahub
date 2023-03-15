@@ -35,7 +35,6 @@ import com.linkedin.datahub.graphql.generated.CorpGroupInfo;
 import com.linkedin.datahub.graphql.generated.CorpUser;
 import com.linkedin.datahub.graphql.generated.CorpUserInfo;
 import com.linkedin.datahub.graphql.generated.CorpUserViewsSettings;
-import com.linkedin.datahub.graphql.generated.DataProduct;
 import com.linkedin.datahub.graphql.generated.Dashboard;
 import com.linkedin.datahub.graphql.generated.DashboardInfo;
 import com.linkedin.datahub.graphql.generated.DashboardStatsSummary;
@@ -820,7 +819,7 @@ public class GmsGraphQLEngine {
             .dataFetcher("addTerms", new AddTermsResolver(entityService))
             .dataFetcher("removeTerm", new RemoveTermResolver(entityService))
             .dataFetcher("batchRemoveTerms", new BatchRemoveTermsResolver(entityService))
-            .dataFetcher("createDataProduct", new CreateDataProductResolver(this.entityClient))
+            .dataFetcher("createDataProduct", new CreateDataProductResolver(this.entityClient, this.entityService))
             .dataFetcher("deleteDataProduct", new DeleteDataProductResolver(this.entityClient))
             .dataFetcher("createPolicy", new UpsertPolicyResolver(this.entityClient))
             .dataFetcher("updatePolicy", new UpsertPolicyResolver(this.entityClient))
