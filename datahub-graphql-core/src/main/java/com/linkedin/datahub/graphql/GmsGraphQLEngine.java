@@ -185,6 +185,8 @@ import com.linkedin.datahub.graphql.resolvers.mutate.UpdateNameResolver;
 import com.linkedin.datahub.graphql.resolvers.mutate.UpdateParentNodeResolver;
 import com.linkedin.datahub.graphql.resolvers.mutate.UpdateUserSettingResolver;
 import com.linkedin.datahub.graphql.resolvers.operation.ReportOperationResolver;
+import com.linkedin.datahub.graphql.resolvers.dataproduct.CreateDataProductResolver;
+import com.linkedin.datahub.graphql.resolvers.dataproduct.DeleteDataProductResolver;
 import com.linkedin.datahub.graphql.resolvers.policy.DeletePolicyResolver;
 import com.linkedin.datahub.graphql.resolvers.policy.GetGrantedPrivilegesResolver;
 import com.linkedin.datahub.graphql.resolvers.policy.ListPoliciesResolver;
@@ -252,6 +254,7 @@ import com.linkedin.datahub.graphql.types.common.mappers.UrnToEntityMapper;
 import com.linkedin.datahub.graphql.types.container.ContainerType;
 import com.linkedin.datahub.graphql.types.corpgroup.CorpGroupType;
 import com.linkedin.datahub.graphql.types.corpuser.CorpUserType;
+import com.linkedin.datahub.graphql.types.dataproduct.DataProductType;
 import com.linkedin.datahub.graphql.types.dashboard.DashboardType;
 import com.linkedin.datahub.graphql.types.dataflow.DataFlowType;
 import com.linkedin.datahub.graphql.types.datajob.DataJobType;
@@ -372,6 +375,7 @@ public class GmsGraphQLEngine {
     private final CorpUserType corpUserType;
     private final CorpGroupType corpGroupType;
     private final ChartType chartType;
+    private final DataProductType dataProductType;
     private final DashboardType dashboardType;
     private final DataPlatformType dataPlatformType;
     private final TagType tagType;
@@ -465,6 +469,7 @@ public class GmsGraphQLEngine {
         this.corpUserType = new CorpUserType(entityClient, featureFlags);
         this.corpGroupType = new CorpGroupType(entityClient);
         this.chartType = new ChartType(entityClient);
+        this.dataProductType = new DataProductType(entityClient);
         this.dashboardType = new DashboardType(entityClient);
         this.dataPlatformType = new DataPlatformType(entityClient);
         this.tagType = new TagType(entityClient);
@@ -499,6 +504,7 @@ public class GmsGraphQLEngine {
             corpGroupType,
             dataPlatformType,
             chartType,
+            dataProductType,
             dashboardType,
             tagType,
             mlModelType,
@@ -556,6 +562,7 @@ public class GmsGraphQLEngine {
         configureDatasetResolvers(builder);
         configureCorpUserResolvers(builder);
         configureCorpGroupResolvers(builder);
+        // configureDataProductResolvers(builder); Presumably not necessary
         configureDashboardResolvers(builder);
         configureNotebookResolvers(builder);
         configureChartResolvers(builder);
@@ -786,6 +793,7 @@ public class GmsGraphQLEngine {
         return env.getArgument(URN_FIELD_NAME);
     }
 
+    // TODO where do the dataFetcher come from?
     private void configureMutationResolvers(final RuntimeWiring.Builder builder) {
         builder.type("Mutation", typeWiring -> typeWiring
             .dataFetcher("updateDataset", new MutableTypeResolver<>(datasetType))
@@ -811,6 +819,8 @@ public class GmsGraphQLEngine {
             .dataFetcher("addTerms", new AddTermsResolver(entityService))
             .dataFetcher("removeTerm", new RemoveTermResolver(entityService))
             .dataFetcher("batchRemoveTerms", new BatchRemoveTermsResolver(entityService))
+            .dataFetcher("createDataProduct", new CreateDataProductResolver(this.entityClient, this.entityService))
+            .dataFetcher("deleteDataProduct", new DeleteDataProductResolver(this.entityClient))
             .dataFetcher("createPolicy", new UpsertPolicyResolver(this.entityClient))
             .dataFetcher("updatePolicy", new UpsertPolicyResolver(this.entityClient))
             .dataFetcher("deletePolicy", new DeletePolicyResolver(this.entityClient))

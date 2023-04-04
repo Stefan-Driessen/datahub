@@ -15,6 +15,11 @@ Coming soon listEntity queries for listing all entities of a given type
 """
 type Query {
     """
+    Fetch a Data Product by primary key (urn)
+    """
+    dataProduct(urn: String!): dataProduct
+
+    """
     Fetch a Data Platform by primary key (urn)
     """
     dataPlatform(urn: String!): DataPlatform
@@ -271,6 +276,16 @@ type Mutation {
     Set the hex color associated with an existing Tag
     """
     setTagColor(urn: String!, colorHex: String!): Boolean
+
+    """
+    Create a new data product, requires the domain urn and the name of the data product.
+    """
+    createDataProduct(name: String!, domainUrn: String!): String
+
+    """
+    Remove an existing data product and returns the product urn
+    """
+    deleteDataProduct(urn: String!): String
 
     """
     Create a policy and returns the resulting urn
@@ -647,6 +662,11 @@ interface BrowsableEntity {
 A top level Metadata Entity Type
 """
 enum EntityType {
+    """
+    A Data Product v0.0.1
+    """
+    DATA_PRODUCT
+
     """
     A Domain containing Metadata Entities
     """
@@ -4521,6 +4541,31 @@ type ChangeAuditStamps {
     An optional AuditStamp corresponding to the deletion
     """
     deleted: AuditStamp
+}
+
+"""
+A Data Product Metadata Entity
+"""
+type DataProduct implements Entity {
+    """
+    The primary key of the Dashboard
+    """
+    urn: String!
+
+    """
+    Unique urn of the domain of the data product as defined in \datahub\metadata-models\src\main\pegasus\com\linkedin\metadata\key\DashboardKey.pdl
+    """
+    domain: String!
+
+    """
+    Unique name of the data prouduct as defined in \datahub\metadata-models\src\main\pegasus\com\linkedin\metadata\key\DashboardKey.pdl
+    """
+    name: String!
+
+    """
+    Ownership metadata of the data product which is added as an aspect in \datahub\metadata-models\src\main\resources\entity-registry.yml
+    """
+    ownership: Ownership
 }
 
 """
