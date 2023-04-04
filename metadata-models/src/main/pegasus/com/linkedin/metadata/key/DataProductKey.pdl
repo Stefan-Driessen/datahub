@@ -1,0 +1,28 @@
+namespace com.linkedin.metadata.key
+
+import com.linkedin.common.Urn
+
+/**
+ * Key for a Data Product
+ */
+@Aspect = {
+  "name": "dataProductKey"
+}
+record dataProductKey {
+  /**
+  * Domain urn associated with the data product
+  */
+  domain: Urn
+
+  /**
+  * Name of the product; within domains each data product should have a unique name.
+  */
+  
+  @Searchable = {
+    "fieldName": "id"
+    "fieldType": "TEXT_PARTIAL",
+    "enableAutocomplete": true,
+    "boostScore": 10.0
+  }
+  name: string
+}
