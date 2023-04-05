@@ -17,7 +17,7 @@ type Query {
     """
     Fetch a Data Product by primary key (urn)
     """
-    dataProduct(urn: String!): dataProduct
+    dataProduct(urn: String!): DataProduct
 
     """
     Fetch a Data Platform by primary key (urn)
@@ -4562,10 +4562,21 @@ type DataProduct implements Entity {
     """
     name: String!
 
+        """
+    A standard Entity Type
+    """
+    type: EntityType!
+
+
     """
     Ownership metadata of the data product which is added as an aspect in \datahub\metadata-models\src\main\resources\entity-registry.yml
     """
     ownership: Ownership
+
+    """
+    Granular API for querying edges extending from this entity
+    """
+    relationships(input: RelationshipsInput!): EntityRelationshipsResult
 }
 
 """
