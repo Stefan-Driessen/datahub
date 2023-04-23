@@ -96,6 +96,7 @@ services:
       - METADATA_SERVICE_AUTH_ENABLED=false
     hostname: datahub-gms
     image: ${DATAHUB_GMS_IMAGE:-linkedin/datahub-gms}:${DATAHUB_VERSION:-head}
+    platform: linux/amd64
     ports:
       - ${DATAHUB_MAPPED_GMS_PORT:-8080}:8080
     volumes:

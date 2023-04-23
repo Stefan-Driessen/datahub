@@ -30,7 +30,7 @@ import static com.linkedin.metadata.Constants.*;
 public class DataProductType implements com.linkedin.datahub.graphql.types.EntityType<DataProduct, String> {
 
     private static final Set<String> ASPECTS_TO_RESOLVE = ImmutableSet.of(
-        // Added here: \datahub\li-utils\src\main\java\com\linkedin\metadata\Constants.java
+        // Maintained here: \datahub\li-utils\src\main\java\com\linkedin\metadata\Constants.java
         DATA_PRODUCT_KEY_ASPECT_NAME,
         OWNERSHIP_ASPECT_NAME
     );
@@ -51,7 +51,7 @@ public class DataProductType implements com.linkedin.datahub.graphql.types.Entit
 
     @Override
     public EntityType type() {
-        return EntityType.DATA_PRODUCT; // Presumably refers to
+        return EntityType.DATA_PRODUCT;
     }
 
     @Override

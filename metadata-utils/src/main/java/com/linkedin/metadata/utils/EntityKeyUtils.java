@@ -92,8 +92,8 @@ public class EntityKeyUtils {
 
     // #2. Bind fields into a DataMap
     if (urn.getEntityKey().getParts().size() != keySchema.getFields().size()) {
-      throw new IllegalArgumentException(
-          "Failed to convert urn to entity key: urns parts and key fields do not have same length for " + urn);
+      throw new IllegalArgumentException("04191354: Failed to convert urn to entity key: urns parts and key fields do not have same length"
+        + String.format("for urn parts: %s\nkeySchema: %s", urn.getEntityKey().getParts(), keySchema.getFields()));
     }
     final DataMap dataMap = new DataMap();
     for (int i = 0; i < urn.getEntityKey().getParts().size(); i++) {

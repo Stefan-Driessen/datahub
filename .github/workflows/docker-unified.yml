@@ -83,7 +83,7 @@ jobs:
           publish: ${{ needs.setup.outputs.publish }}
           context: .
           file: ./docker/datahub-gms/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
   gms_scan:
     permissions:
       contents: read # for actions/checkout to fetch code
@@ -257,7 +257,7 @@ jobs:
           publish: ${{ needs.setup.outputs.publish }}
           context: .
           file: ./docker/datahub-upgrade/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
   datahub_upgrade_scan:
     name: "[Monitoring] Scan DataHub Upgrade images for vulnerabilities"
     runs-on: ubuntu-latest
@@ -371,7 +371,7 @@ jobs:
           publish: ${{ needs.setup.outputs.publish }}
           context: .
           file: ./docker/kafka-setup/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
 
   mysql_setup_build:
     name: Build and Push DataHub MySQL Setup Docker Image
@@ -393,7 +393,7 @@ jobs:
           publish: ${{ needs.setup.outputs.publish }}
           context: .
           file: ./docker/mysql-setup/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
 
   elasticsearch_setup_build:
     name: Build and Push DataHub Elasticsearch Setup Docker Image

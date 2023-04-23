@@ -1,18 +1,18 @@
-Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (22.0.2)
+Requirement already satisfied: pip in ./venv/lib/python3.7/site-packages (22.0.4)
 Collecting pip
-  Using cached pip-23.0.1-py3-none-any.whl (2.1 MB)
+  Using cached pip-23.1-py3-none-any.whl (2.1 MB)
 Collecting wheel
-  Using cached wheel-0.38.4-py3-none-any.whl (36 kB)
-Requirement already satisfied: setuptools in ./venv/lib/python3.10/site-packages (59.6.0)
+  Using cached wheel-0.40.0-py3-none-any.whl (64 kB)
+Requirement already satisfied: setuptools in ./venv/lib/python3.7/site-packages (47.1.0)
 Collecting setuptools
-  Using cached setuptools-67.3.2-py3-none-any.whl (1.1 MB)
+  Using cached setuptools-67.7.1-py3-none-any.whl (1.1 MB)
 Installing collected packages: wheel, setuptools, pip
   Attempting uninstall: setuptools
-    Found existing installation: setuptools 59.6.0
-    Uninstalling setuptools-59.6.0:
-      Successfully uninstalled setuptools-59.6.0
+    Found existing installation: setuptools 47.1.0
+    Uninstalling setuptools-47.1.0:
+      Successfully uninstalled setuptools-47.1.0
   Attempting uninstall: pip
-    Found existing installation: pip 22.0.2
-    Uninstalling pip-22.0.2:
-      Successfully uninstalled pip-22.0.2
-Successfully installed pip-23.0.1 setuptools-67.3.2 wheel-0.38.4
+    Found existing installation: pip 22.0.4
+    Uninstalling pip-22.0.4:
+      Successfully uninstalled pip-22.0.4
+Successfully installed pip-23.1 setuptools-67.7.1 wheel-0.40.0

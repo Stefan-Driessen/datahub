@@ -69,6 +69,7 @@ public class CreateTagResolver implements DataFetcher<CompletableFuture<String>>
         proposal.setChangeType(ChangeType.UPSERT);
 
         String tagUrn = _entityClient.ingestProposal(proposal, context.getAuthentication());
+        System.out.println(String.format("created tagUrn as %s", tagUrn));
         OwnerUtils.addCreatorAsOwner(context, tagUrn, OwnerEntityType.CORP_USER, OwnershipType.TECHNICAL_OWNER, _entityService);
         return tagUrn;
       } catch (Exception e) {

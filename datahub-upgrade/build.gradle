@@ -81,7 +81,7 @@ docker {
   }
   tag("Debug", "${docker_registry}/${docker_repo}:debug")
 
-  // platform('linux/arm64', 'linux/amd64')
+  platform('linux/amd64')
   buildx(true)
   load(true)
   push(false)

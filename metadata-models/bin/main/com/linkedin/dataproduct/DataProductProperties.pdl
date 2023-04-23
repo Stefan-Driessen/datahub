@@ -1,0 +1,25 @@
+namespace com.linkedin.dataproduct
+
+/**
+ * Properties associated with a Data Product
+ */
+@Aspect = {
+  "name": "dataProductProperties"
+}
+record DataProductProperties {
+  /**
+   * Display name of the data product
+   */
+  @Searchable = {
+    "fieldType": "TEXT_PARTIAL",
+    "enableAutocomplete": true,
+    "boostScore": 10.0
+  }
+  name: string
+
+  /**
+   * Documentation of the data product
+   */
+  @Searchable = {}
+  description: optional string
+}
