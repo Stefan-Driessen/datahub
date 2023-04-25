@@ -840,29 +840,29 @@ public class EntityService {
    */
   public IngestProposalResult ingestProposal(@Nonnull MetadataChangeProposal mcp,
       AuditStamp auditStamp, final boolean async) {
-    System.out.println("21041425 We found the magic.");
-    System.out.println(String.format("entity type = {}", mcp.getEntityType()));
+    // System.out.println("21041425 We found the magic.");
+    // System.out.println(String.format("entity type = %s", mcp.getEntityType()));
     EntitySpec entitySpec = getEntityRegistry().getEntitySpec(mcp.getEntityType());
-    System.out.println(String.format("entity spec = {}", entitySpec));
+    // System.out.println(String.format("entity spec = %s", entitySpec));
 
     Urn entityUrn = EntityKeyUtils.getUrnFromProposal(mcp, entitySpec.getKeyAspectSpec());
-    System.out.println(String.format("entityUrn: {}", entityUrn));
+    // System.out.println(String.format("entityUrn: %s", entityUrn));
     AspectSpec aspectSpec = validateAspect(mcp, entitySpec);
 
-    System.out.println(String.format("aspect spec = {}", aspectSpec));
+    // System.out.println(String.format("aspect spec = %s", aspectSpec));
 
     if (!isValidChangeType(mcp.getChangeType(), aspectSpec)) {
       throw new UnsupportedOperationException(
           "ChangeType not supported: " + mcp.getChangeType() + " for aspect " + mcp.getAspectName());
     }
 
-    System.out.println(String.format("'t was a valid changetype!"));
+    // System.out.println(String.format("'t was a valid changetype!"));
     SystemMetadata systemMetadata = generateSystemMetadataIfEmpty(mcp.getSystemMetadata());
-    System.out.println(String.format("generated systemMetadata"));
+    // System.out.println(String.format("generated systemMetadata"));
     systemMetadata.setRegistryName(aspectSpec.getRegistryName());
-    System.out.println(String.format("set registryName"));
+    // System.out.println(String.format("set registryName"));
     systemMetadata.setRegistryVersion(aspectSpec.getRegistryVersion().toString());
-    System.out.println(String.format("set registryVersion"));
+    // System.out.println(String.format("set registryVersion"));
 
     RecordTemplate oldAspect = null;
     SystemMetadata oldSystemMetadata = null;
@@ -875,9 +875,9 @@ public class EntityService {
         UpdateAspectResult result;
         switch (mcp.getChangeType()) {
           case UPSERT:
-            System.out.println(String.format("case is UPSERT"));
+            // System.out.println(String.format("case is UPSERT"));
             result = performUpsert(mcp, aspectSpec, systemMetadata, entityUrn, auditStamp);
-            System.out.println(String.format("set result"));
+            // System.out.println(String.format("set result"));
             break;
           case PATCH:
             result = performPatch(mcp, aspectSpec, systemMetadata, entityUrn, auditStamp);
@@ -887,15 +887,15 @@ public class EntityService {
             throw new UnsupportedOperationException("ChangeType not supported: " + mcp.getChangeType());
         }
         oldAspect = result != null ? result.getOldValue() : null;
-        System.out.println(String.format("defined oldAspect"));
+        // System.out.println(String.format("defined oldAspect"));
         oldSystemMetadata = result != null ? result.getOldSystemMetadata() : null;
-        System.out.println(String.format("defined oldSystemMetadata"));
+        // System.out.println(String.format("defined oldSystemMetadata"));
         newAspect = result != null ? result.getNewValue() : null;
-        System.out.println(String.format("newAspect oldSystemMetadata"));
+        // System.out.println(String.format("newAspect oldSystemMetadata"));
         newSystemMetadata = result != null ? result.getNewSystemMetadata() : null;
-        System.out.println(String.format("defined newSystemMetadata"));
+        // System.out.println(String.format("defined newSystemMetadata"));
       } else {
-        System.out.println(String.format("We are in async!"));
+        // System.out.println(String.format("We are in async!"));
         // When async is turned on, we write to proposal log and return without waiting
         _producer.produceMetadataChangeProposal(entityUrn, mcp);
         return new IngestProposalResult(entityUrn, false, true);
@@ -909,7 +909,7 @@ public class EntityService {
     boolean didUpdate =
         emitChangeLog(oldAspect, oldSystemMetadata, newAspect, newSystemMetadata, mcp, entityUrn, auditStamp,
             aspectSpec);
-    System.out.println(String.format("didUpdate: %s\nGoing to another function.", didUpdate));
+    // System.out.println(String.format("didUpdate: %s\nGoing to another function.", didUpdate));
     return new IngestProposalResult(entityUrn, didUpdate, false);
   }
 

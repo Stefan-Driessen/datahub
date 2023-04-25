@@ -65,6 +65,8 @@ public class CreateTagResolver implements DataFetcher<CompletableFuture<String>>
         proposal.setEntityKeyAspect(GenericRecordUtils.serializeAspect(key));
         proposal.setEntityType(Constants.TAG_ENTITY_NAME);
         proposal.setAspectName(Constants.TAG_PROPERTIES_ASPECT_NAME);
+        System.out.println(String.format("25041520 The tag properties aspect looks like this: %s", 
+        GenericRecordUtils.serializeAspect(mapTagProperties(input))));
         proposal.setAspect(GenericRecordUtils.serializeAspect(mapTagProperties(input)));
         proposal.setChangeType(ChangeType.UPSERT);
 

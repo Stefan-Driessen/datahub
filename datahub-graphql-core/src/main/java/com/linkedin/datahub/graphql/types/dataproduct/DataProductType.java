@@ -32,6 +32,7 @@ public class DataProductType implements com.linkedin.datahub.graphql.types.Entit
     private static final Set<String> ASPECTS_TO_RESOLVE = ImmutableSet.of(
         // Maintained here: \datahub\li-utils\src\main\java\com\linkedin\metadata\Constants.java
         DATA_PRODUCT_KEY_ASPECT_NAME,
+        DATA_PRODUCT_PROPERTIES_ASPECT_NAME,
         OWNERSHIP_ASPECT_NAME
     );
     
@@ -42,12 +43,6 @@ public class DataProductType implements com.linkedin.datahub.graphql.types.Entit
     public DataProductType(final EntityClient entityClient) {
         _entityClient = entityClient;
     }
-
-    // Presumably useful for next iterations.
-    // @Override
-    // public Class<DashboardUpdateInput> inputClass() {
-    //     return DashboardUpdateInput.class;
-    // }
 
     @Override
     public EntityType type() {
@@ -70,6 +65,9 @@ public class DataProductType implements com.linkedin.datahub.graphql.types.Entit
         final List<Urn> urns = urnStrs.stream()
             .map(UrnUtils::getUrn)
             .collect(Collectors.toList());
+        System.out.println("Defined urns");
+        System.out.println(urns);
+        
         try {
             final Map<Urn, EntityResponse> dataProductMap =
                 _entityClient.batchGetV2(

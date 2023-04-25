@@ -704,6 +704,7 @@ public class GmsGraphQLEngine {
             .dataFetcher("corpUser", getResolver(corpUserType))
             .dataFetcher("corpGroup", getResolver(corpGroupType))
             .dataFetcher("dashboard", getResolver(dashboardType))
+            .dataFetcher("dataProduct", getResolver(dataProductType))
             .dataFetcher("chart", getResolver(chartType))
             .dataFetcher("tag", getResolver(tagType))
             .dataFetcher("dataFlow", getResolver(dataFlowType))

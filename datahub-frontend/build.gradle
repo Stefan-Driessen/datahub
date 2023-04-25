@@ -4,6 +4,12 @@ plugins {
   id 'scala'
 }
 
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.with {
+        force = true
+    }
+}
+
 apply from: "../gradle/versioning/versioning.gradle"
 apply from: './play.gradle'
 

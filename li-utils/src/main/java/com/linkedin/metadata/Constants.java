@@ -60,8 +60,9 @@ public class Constants {
   /**
    * Aspects
    */
-  // Data Product
+  // DataProduct
   public static final String DATA_PRODUCT_KEY_ASPECT_NAME = "dataProductKey";
+  public static final String DATA_PRODUCT_PROPERTIES_ASPECT_NAME = "dataProductProperties";
 
   // Common
   public static final String OWNERSHIP_ASPECT_NAME = "ownership";

@@ -3790,6 +3790,21 @@ type EditableTagProperties {
 }
 
 """
+Properties for a Data Product
+"""
+type DataProductProperties {
+    """
+    Display name of the data product.
+    """
+    name: String!
+
+    """
+    Documentation of the data product.
+    """
+    description: String
+}
+
+"""
 Properties for a DataHub Tag
 """
 type TagProperties {
@@ -4582,7 +4597,12 @@ type DataProduct implements Entity {
     """
     name: String!
 
-        """
+    """
+    Additional properties from the dataProductProperties aspect.
+    """
+    properties: DataProductProperties
+
+    """
     A standard Entity Type
     """
     type: EntityType!
